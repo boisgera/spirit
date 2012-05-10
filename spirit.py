@@ -11,6 +11,9 @@ class Command(object):
     def __init__(self, command):
         self.args = shlex.split(command)
         self.name = self.args[0]
+        self._create_subprocess()
+
+    def _create_subprocess(self):
         from_parent, self.stdin = os.pipe()
         self.stdout, to_parent = os.pipe()
 
@@ -30,8 +33,8 @@ class Command(object):
     def write(self, data):
         return os.write(self.stdin, data)
 
-    def __call__(self, input):
-        self.write(input)
+    def __call__(self, input=None):
+        self.write(input or "")
         os.close(self.stdin)
         output = []
         while True:
