@@ -45,19 +45,7 @@ class Command(object):
         return os.write(self.stdin, data)
 
     def __call__(self, input=None):
-        if self.pid == 0:
-            self._create_subprocess()            
-        self.write(input or "")
-        os.close(self.stdin)
-        output = []
-        while True:
-            extra = self.read(4096)
-            if extra:
-                output.append(extra)
-            else:
-                break
-        os.waitpid(self.pid, 0)
-        self.pid = 0
+        output = list(self.iter(input))
         return "".join(output)
 
     def iter(self, input=None):
