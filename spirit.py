@@ -67,14 +67,15 @@ class Command(object):
         elif isinstance(input, str):
             input = [input]
         
-        for datum in input:
-            while True:
-                read, write, _ = select.select([self.stdin], [self.stdout], [])
-                if read:
-                    yield self.stdout.read(1)
-                elif write:
-                    self.stdin.write(datum)
-                    break
+        for data in input:
+            for datum in data:
+                while True:
+                    read, write, _ = select.select([self.stdin], [self.stdout], [])
+                    if read:
+                        yield self.stdout.read(1)
+                    elif write:
+                        self.stdin.write(datum)
+                        break
         self.stdin.close()
         while True:
             read, _, _ = select.select([self.stdin], [], [])
