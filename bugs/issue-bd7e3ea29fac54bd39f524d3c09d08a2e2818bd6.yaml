@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Commands callable several times
+desc: ""
+type: :feature
+component: spirit
+release: 
+reporter: "S\xC3\xA9bastien Boisg\xC3\xA9rault <Sebastien.Boisgerault@mines-paristech.fr>"
+status: :unstarted
+disposition: 
+creation_time: 2012-05-10 11:45:25.263570 Z
+references: []
+
+id: bd7e3ea29fac54bd39f524d3c09d08a2e2818bd6
+log_events: 
+- - 2012-05-10 11:45:28.927497 Z
+  - "S\xC3\xA9bastien Boisg\xC3\xA9rault <Sebastien.Boisgerault@mines-paristech.fr>"
+  - created
+  - ""
