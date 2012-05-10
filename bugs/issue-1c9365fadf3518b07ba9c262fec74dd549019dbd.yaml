@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Support iterator inputs
+desc: ""
+type: :feature
+component: spirit
+release: 
+reporter: "S\xC3\xA9bastien Boisg\xC3\xA9rault <Sebastien.Boisgerault@mines-paristech.fr>"
+status: :unstarted
+disposition: 
+creation_time: 2012-05-10 16:19:11.350813 Z
+references: []
+
+id: 1c9365fadf3518b07ba9c262fec74dd549019dbd
+log_events: 
+- - 2012-05-10 16:19:13.366897 Z
+  - "S\xC3\xA9bastien Boisg\xC3\xA9rault <Sebastien.Boisgerault@mines-paristech.fr>"
+  - created
+  - ""
