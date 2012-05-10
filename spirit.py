@@ -11,13 +11,14 @@ class Command(object):
     def __init__(self, command):
         self.args = shlex.split(command)
         self.name = self.args[0]
-        self._create_subprocess()
+        self.pid = 0
 
     def _create_subprocess(self):
         from_parent, self.stdin = os.pipe()
         self.stdout, to_parent = os.pipe()
 
-        if os.fork() == 0: # child
+        pid = os.fork()
+        if pid == 0: # child
             os.dup2(from_parent, STDIN)
             os.dup2(to_parent, STDOUT)
             os.close(self.stdin)
@@ -26,6 +27,7 @@ class Command(object):
         else: # parent
             os.close(from_parent)
             os.close(to_parent)
+            return pid
 
     def read(self, n):
         return os.read(self.stdout, n)
@@ -34,6 +36,8 @@ class Command(object):
         return os.write(self.stdin, data)
 
     def __call__(self, input=None):
+        if self.pid == 0:
+            self._create_subprocess()
         self.write(input or "")
         os.close(self.stdin)
         output = []
@@ -43,5 +47,21 @@ class Command(object):
                 output.append(extra)
             else:
                 break
+        os.waitpid(self.pid, 0)
+        self.pid = 0
         return "".join(output)
+
+    def iter(self, input=None):
+        if self.pid == 0:
+            self._create_subprocess()
+        self.write(input or "")
+        os.close(self.stdin)
+        while True:
+            c = self.read(1)
+            if c:
+                yield c
+            else:
+                break
+        os.waitpid(self.pid, 0)
+        self.pid = 0
 

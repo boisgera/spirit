@@ -5,8 +5,8 @@ type: :feature
 component: spirit
 release: 
 reporter: "S\xC3\xA9bastien Boisg\xC3\xA9rault <Sebastien.Boisgerault@mines-paristech.fr>"
-status: :unstarted
-disposition: 
+status: :closed
+disposition: :fixed
 creation_time: 2012-05-10 11:45:25.263570 Z
 references: []
 
@@ -15,4 +15,8 @@ log_events:
 - - 2012-05-10 11:45:28.927497 Z
   - "S\xC3\xA9bastien Boisg\xC3\xA9rault <Sebastien.Boisgerault@mines-paristech.fr>"
   - created
+  - ""
+- - 2012-05-10 16:15:57.718676 Z
+  - "S\xC3\xA9bastien Boisg\xC3\xA9rault <Sebastien.Boisgerault@mines-paristech.fr>"
+  - closed with disposition fixed
   - ""
