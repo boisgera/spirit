@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import fcntl
+import itertools
 import os
 import select
 import shlex
@@ -62,26 +63,36 @@ class Command(object):
     def iter(self, input=None):
         if self.pid == 0:
             self._create_subprocess()
+
         if input is None:
             input = []
         elif isinstance(input, str):
             input = [input]
-        
-        for data in input:
-            for datum in data:
-                while True:
-                    read, write, _ = select.select([self.stdin], [self.stdout], [])
-                    if read:
-                        yield self.stdout.read(1)
-                    elif write:
-                        self.stdin.write(datum)
-                        break
-        self.stdin.close()
-        while True:
-            read, _, _ = select.select([self.stdin], [], [])
-            if read:
-                yield self.stdout.read(1) 
+        def iter_char(iterable):
+            for string in iterable:
+                for char in string:
+                    yield char
+        input = iter_char(input)
 
+        readers, writers = [self.stdout], [self.stdin]
+        while True:
+            if not readers and not writers:
+                break
+            _readers, _writers, _ = select.select(readers, writers, [])
+            if _readers:
+                c = os.read(_readers[0], 1)
+                if c:
+                    yield c
+                else:
+                    os.close(_readers[0])
+                    readers.pop()
+            elif _writers:
+                try:
+                    datum = input.next()
+                    os.write(_writers[0], datum)
+                except StopIteration:
+                    os.close(_writers[0])
+                    writers.pop()
         os.waitpid(self.pid, 0)
         self.pid = 0
 
