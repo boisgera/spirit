@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: make hosts importable by module getattr
+desc: ""
+type: :feature
+component: spirit
+release: 
+reporter: "S\xC3\xA9bastien Boisg\xC3\xA9rault <Sebastien.Boisgerault@mines-paristech.fr>"
+status: :unstarted
+disposition: 
+creation_time: 2012-05-15 09:22:32.280896 Z
+references: []
+
+id: c8e02c440cdbf2f8edf6870e84e3523bcdfa11bc
+log_events: 
+- - 2012-05-15 09:22:38.577881 Z
+  - "S\xC3\xA9bastien Boisg\xC3\xA9rault <Sebastien.Boisgerault@mines-paristech.fr>"
+  - created
+  - ""
