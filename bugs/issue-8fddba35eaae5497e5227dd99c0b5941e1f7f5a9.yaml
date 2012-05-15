@@ -1,0 +1,18 @@
+--- !ditz.rubyforge.org,2008-03-06/issue 
+title: Support pipe symbol
+desc: ""
+type: :feature
+component: spirit
+release: 
+reporter: "S\xC3\xA9bastien Boisg\xC3\xA9rault <Sebastien.Boisgerault@mines-paristech.fr>"
+status: :unstarted
+disposition: 
+creation_time: 2012-05-15 09:04:42.957377 Z
+references: []
+
+id: 8fddba35eaae5497e5227dd99c0b5941e1f7f5a9
+log_events: 
+- - 2012-05-15 09:04:43.861949 Z
+  - "S\xC3\xA9bastien Boisg\xC3\xA9rault <Sebastien.Boisgerault@mines-paristech.fr>"
+  - created
+  - ""
